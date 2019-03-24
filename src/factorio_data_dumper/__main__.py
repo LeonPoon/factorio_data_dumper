@@ -20,4 +20,4 @@ for mod in (
     lua.evaluate(ModEvaluator(mods, mod))
 
 
-print(json.dumps(lua.dump_global('data')))
+print(json.dumps(lua.dump_global('data'), separators=(',', ':')))
