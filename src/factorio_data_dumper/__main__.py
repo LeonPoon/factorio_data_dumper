@@ -13,11 +13,14 @@ data = DataFilesystem()
 mods = ModsContext()
 
 
-for mod in (
+mods = (
     CoreMod(data),
     BaseMod(data)
-):
+)
+
+for mod in mods:
     lua.evaluate(ModEvaluator(mods, mod))
 
 
-print(json.dumps(lua.dump_global('data'), separators=(',', ':')))
+if __name__ == '__main__':
+    print(json.dumps(lua.dump_global('data'), separators=(',', ':')))
