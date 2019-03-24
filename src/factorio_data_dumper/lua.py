@@ -55,5 +55,16 @@ class Dumper(object):
         return str(d)
 
     def dump_None(self, d):  # py obj?
-        return (d if isinstance(d, (str, dict, int, float))
+        return (
+                self.dump_float(d) if isinstance(d, float)
+                else d if isinstance(d, (str, dict, int, float))
                 else str(d))
+
+    def dump_float(self, d):
+        if d == float('inf'):
+            return 'Infinity'
+        if d == float('-inf'):
+            return '-Infinity'
+        if d == float('nan'):
+            return 'NaN'
+        return d
