@@ -9,6 +9,7 @@ class Lua(object):
 
     def __init__(self, setup):
         self.runtime = LuaRuntime()
+        self.runtime.eval('function(pow) math.pow = pow end')(pow)
         setup(self.runtime)
 
     def evaluate(self, evaluatable):
